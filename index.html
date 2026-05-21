@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peladinhas da Invicta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: #1a3a6b;
+    --azul-claro: #2655a0;
+    --azul-escuro: #0f2243;
+    --dourado: #c9a227;
+    --dourado-claro: #f0c93a;
+    --branco: #f5f0e8;
+    --cinza: #8a9bb5;
+    --verde: #2d6a3f;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(201,162,39,0.25);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--azul-escuro);
+    color: var(--branco);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── BACKGROUND ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(38,85,160,0.5) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(201,162,39,0.08) 0%, transparent 60%),
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,0.012) 40px,
+        rgba(255,255,255,0.012) 41px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 60px 20px 40px;
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .hero-logo {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 24px;
+    animation: fadeDown 0.8s ease both;
+    filter: drop-shadow(0 8px 32px rgba(201,162,39,0.3));
+  }
+
+  .hero-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 8vw, 80px);
+    letter-spacing: 0.06em;
+    line-height: 0.9;
+    color: var(--branco);
+    animation: fadeDown 0.8s 0.1s ease both;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  }
+
+  .hero h1 span {
+    color: var(--dourado);
+    display: block;
+  }
+
+  .hero-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--cinza);
+    margin-top: 12px;
+    animation: fadeDown 0.8s 0.2s ease both;
+  }
+
+  .gold-line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--dourado), transparent);
+    margin: 20px auto;
+    animation: fadeDown 0.8s 0.25s ease both;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--card-border);
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .stat-item {
+    flex: 1;
+    min-width: 100px;
+    max-width: 160px;
+    text-align: center;
+    padding: 20px 12px;
+    border-right: 1px solid var(--card-border);
+  }
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--dourado);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cinza);
+    margin-top: 4px;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15,34,67,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding-inline: 12px;
+    scrollbar-width: none;
+    max-width: 100%;
+  }
+  nav::-webkit-scrollbar { display: none; }
+
+  nav button {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 14px 20px;
+    background: none;
+    border: none;
+    color: var(--cinza);
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  @media (min-width: 720px) {
+    nav { justify-content: center; }
+  }
+
+  nav button.active,
+  nav button:hover {
+    color: var(--dourado);
+    border-bottom-color: var(--dourado);
+  }
+
+  /* ── MAIN CONTENT ── */
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  .tab-content { display: none; animation: fadeUp 0.4s ease both; }
+  .tab-content.active { display: block; }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.08em;
+    color: var(--branco);
+    margin-bottom: 6px;
+  }
+  .section-title span { color: var(--dourado); }
+
+  .section-desc {
+    font-size: 13px;
+    color: var(--cinza);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .card:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(201,162,39,0.45);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .card-date {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--dourado);
+    line-height: 1;
+    min-width: 50px;
+    text-align: center;
+  }
+  .card-date small {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--cinza);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .card-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--branco);
+    letter-spacing: 0.02em;
+  }
+
+  .card-subtitle {
+    font-size: 12px;
+    color: var(--cinza);
+    margin-top: 2px;
+  }
+
+  .badge {
+    margin-left: auto;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-torneio { background: rgba(201,162,39,0.15); color: var(--dourado); border: 1px solid rgba(201,162,39,0.4); }
+  .badge-livre { background: rgba(38,85,160,0.25); color: #7da3d9; border: 1px solid rgba(38,85,160,0.5); }
+  .badge-cancelado { background: rgba(150,60,60,0.2); color: #e07070; border: 1px solid rgba(150,60,60,0.4); }
+
+  .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 6px; }
+
+  .chip {
+    font-size: 11px;
+    padding: 2px 9px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--cinza);
+  }
+
+  .note {
+    font-size: 12px;
+    color: var(--cinza);
+    background: rgba(255,255,255,0.04);
+    border-left: 2px solid var(--dourado);
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 0;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+
+  /* ── RESULTS TABLE ── */
+  .result-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+
+  .result-table th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cinza);
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--card-border);
+    text-align: center;
+  }
+  .result-table th:first-child { text-align: left; }
+
+  .result-table td {
+    padding: 7px 8px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .result-table td:first-child { text-align: left; }
+  .result-table tr:last-child td { border-bottom: none; }
+
+  .result-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+  .w { color: var(--dourado-claro); font-weight: 600; }
+  .d { color: var(--cinza); }
+  .rank-1 { color: var(--dourado); font-weight: 700; }
+  .rank-2 { color: #c0c8d4; }
+  .team-tag {
+    display: inline-block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    width: 36px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 4px;
+    margin-right: 4px;
+  }
+  .t021 { background: rgba(38,85,160,0.35); color: #7da3d9; }
+  .t022 { background: rgba(45,106,63,0.35); color: #7ec89a; }
+  .t023 { background: rgba(201,162,39,0.2); color: var(--dourado-claro); }
+  .t024 { background: rgba(150,60,60,0.2); color: #e07070; }
+  .t025 { background: rgba(120,80,160,0.2); color: #c09ce0; }
+
+  .contested { font-size: 10px; color: #e07070; margin-left: 4px; }
+
+  /* ── PLAYERS GRID ── */
+  .team-section {
+    margin-bottom: 28px;
+  }
+
+  .team-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--cinza);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--card-border);
+  }
+
+  .players-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .player-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 4px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--branco);
+    transition: background 0.2s;
+  }
+  .player-tag:hover { background: rgba(201,162,39,0.1); }
+  .player-tag.org { border-color: var(--dourado); color: var(--dourado); }
+  .player-tag.num {
+    font-size: 11px;
+    color: var(--cinza);
+    font-weight: 400;
+    padding-right: 6px;
+  }
+
+  /* ── TORNEIO DETAIL ── */
+  .torneio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 600px) { .torneio-grid { grid-template-columns: 1fr; } }
+
+  .info-block {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .info-block .label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cinza);
+    margin-bottom: 4px;
+  }
+
+  .info-block .value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--branco);
+  }
+
+  .podium {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    margin: 24px 0 16px;
+  }
+
+  .podium-item {
+    text-align: center;
+    flex: 1;
+    max-width: 120px;
+  }
+
+  .podium-bar {
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    margin: 0 auto 8px;
+    width: 80px;
+  }
+
+  .podium-1 { height: 90px; background: linear-gradient(180deg, rgba(201,162,39,0.4), rgba(201,162,39,0.15)); border: 1px solid rgba(201,162,39,0.5); color: var(--dourado); }
+  .podium-2 { height: 65px; background: linear-gradient(180deg, rgba(192,200,212,0.2), rgba(192,200,212,0.05)); border: 1px solid rgba(192,200,212,0.3); color: #c0c8d4; }
+  .podium-3 { height: 48px; background: linear-gradient(180deg, rgba(150,90,30,0.2), rgba(150,90,30,0.05)); border: 1px solid rgba(150,90,30,0.3); color: #c4853d; }
+
+  .podium-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .podium-pts {
+    font-size: 11px;
+    color: var(--cinza);
+    margin-top: 2px;
+  }
+
+  .podium-pos {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .podium-1 .podium-pos { color: var(--dourado); }
+  .podium-2 .podium-pos { color: #c0c8d4; }
+  .podium-3 .podium-pos { color: #c4853d; }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--card-border), transparent);
+    margin: 20px 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid var(--card-border);
+    font-size: 11px;
+    color: var(--cinza);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  footer strong { color: var(--dourado); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--azul-escuro); }
+  ::-webkit-scrollbar-thumb { background: var(--azul); border-radius: 3px; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 40px 16px 28px; }
+    .hero-logo { width: 120px; height: 120px; }
+    .stat-item { padding: 14px 8px; }
+    .stat-num { font-size: 28px; }
+    nav {
+      padding-inline: 4px;
+      scroll-snap-type: x proximity;
+    }
+    nav button {
+      padding: 12px 12px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      scroll-snap-align: start;
+    }
+    main { padding: 28px 14px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-logo">
+    <img src="logo.png" alt="Peladinhas da Invicta" width="160" height="160">
+  </div>
+
+  <h1>Peladinhas<span>da Invicta</span></h1>
+  <div class="gold-line"></div>
+  <p class="hero-sub">Porto · ISEP · Maio 2025 — Maio 2026</p>
+</header>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">~13</div>
+    <div class="stat-label">Sessões realizadas</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Torneios</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5</div>
+    <div class="stat-label">Turmas</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">80+</div>
+    <div class="stat-label">Membros no grupo</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">024</div>
+    <div class="stat-label">Campeão Torneio 3</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <button class="active" onclick="showTab('sessoes', this)">Sessões</button>
+  <button onclick="showTab('torneio1', this)">Torneio Mai'25</button>
+  <button onclick="showTab('torneio2', this)">Torneio Fev'26</button>
+  <button onclick="showTab('torneio3', this)">Torneio Mai'26</button>
+  <button onclick="showTab('membros', this)">Membros</button>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <!-- TAB: SESSÕES -->
+  <div id="sessoes" class="tab-content active">
+    <div class="section-title">Histórico de <span>Sessões</span></div>
+    <p class="section-desc">Todas as sessões identificadas no chat — da primeira à mais recente.</p>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-date">20<small>mai '25</small></div>
+        <div>
+          <div class="card-title">Colégio Alemão, Porto</div>
+          <div class="card-subtitle">18h30 · ~28 jogadores · 4,28€/pessoa</div>
+        </div>
+        <span class="badge badge-torneio">Torneio</span>
+      </div>
+      <div class="chip-row">
+        <span class="chip">5 equipas por turma</span><span class="chip">021 · 022 · 023 · 024 · 025</span><span class="chip">Campo de 7</span>
+      </div>
+      <div class="note">Primeiro grande torneio por anos. Organizado pelo Hélder. Resultados parciais — ver tab "Torneio Mai'25".</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-date">27<small>mai '25</small></div>
+        <div>
+          <div class="card-title">Arena PlaySports VNGaia (Devesas)</div>
+          <div class="card-subtitle">18h30 · ~24 jogadores · 3,71€/pessoa</div>
+        </div>
+        <span class="badge badge-livre">Livre</span>
+      </div>
+      <div class="chip-row"><span class="chip">Campo de 7</span><span class="chip">3 equipas</span></div>
+      <div class="note">Jogo livre sem torneio formal. Resultados não foram registados no chat.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-date">3<small>jun '25</small></div>
+        <div>
+          <div class="card-title">Arena PlaySports VNGaia (Devesas)</div>
+          <div class="card-subtitle">18h · ~21 jogadores · 4,98€/pessoa</div>
+        </div>
+        <span class="badge badge-livre">Livre</span>
+      </div>
+      <div class="chip-row"><span class="chip">Campo de 7</span><span class="chip">~3 equipas</span></div>
+      <div class="note">6 jogadores votaram mas não apareceram — começam as regras contra faltas. Resultados não registados.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-date">—<small>jun–ago '25</small></div>
+        <div>
+          <div class="card-title">Múltiplas tentativas falhadas</div>
+          <div class="card-subtitle">Época de exames e férias de verão</div>
+        </div>
+        <span class="badge badge-cancelado">Cancelado</span>
+      </div>
+      <div class="note">TT fez várias polls mas nunca atingiu o mínimo. O grupo esteve praticamente inativo de junho a setembro de 2025.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-date">17<small>set '25</small></div>
+        <div>
+          <div class="card-title">Indoor Soccer Arca d'Água, Porto</div>
+          <div class="card-subtitle">19h · ~13 jogadores · 3,46€/pessoa</div>
+        </div>
+        <span class="badge badge-livre">Livre</span>
+      </div>
+      <div class="chip-row"><span class="chip">Campo de 5</span><span class="chip">Regresso pós-verão</span></div>
+      <div class="note">Primeiros visitantes externos — 2 amigos do Mingas. Resultados não registados.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-date">29<small>set '25</small></div>
+        <div>
+          <div class="card-title">Indoor Soccer Arca d'Água, Porto</div>
+          <div class="card-subtitle">19h · ~12–13 jogadores</div>
+        </div>
+        <span class="badge badge-livre">Livre</span>
+      </div>
+      <div class="note">Krillin e Testarrossa desistiram à última hora — TT ficou enervado. Resultados não registados.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-date">6<small>out '25</small></div>
+        <div>
+          <div class="card-title">Fut4Us FC Infesta, São Mamede de Infesta</div>
+          <div class="card-subtitle">20h · 4,50€/pessoa</div>
+        </div>
+        <span class="badge badge-livre">Livre</span>
+      </div>
+      <div class="chip-row"><span class="chip">Campo de 7</span><span class="chip">Mudança de campo last-minute</span></div>
+      <div class="note">Campo diferente do habitual. Resultados não registados.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-date">—<small>out–nov '25</small></div>
+        <div>
+          <div class="card-title">Várias semanas sem jogo</div>
+          <div class="card-subtitle">Dias 13, 20, 27 out e novembro</div>
+        </div>
+        <span class="badge badge-cancelado">Cancelado</span>
+      </div>
+      <div class="note">Campo grátis pelo Tua-Lipa cancelado à última hora em novembro. "Ontem no lounge dava para fazer 3 equipas de futebol 11." — TT</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-date">19<small>jan '26</small></div>
+        <div>
+          <div class="card-title">Arena PlaySports Porto (Prelada)</div>
+          <div class="card-subtitle">22h · 14 jogadores · 5,10€/pessoa · Novo relvado</div>
+        </div>
+        <span class="badge badge-livre">Livre</span>
+      </div>
+      <div class="chip-row"><span class="chip">Campo de 7</span><span class="chip">Relvado novo estreado</span></div>
+      <div class="note">⚠️ TT sofreu uma rotura de ligamentos neste jogo. Continuou a organizar mesmo assim.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-date">28<small>jan '26</small></div>
+        <div>
+          <div class="card-title">Jogos D7 – Pedrouços, Maia</div>
+          <div class="card-subtitle">21h · 14 jogadores · 3,33€/pessoa</div>
+        </div>
+        <span class="badge badge-livre">Livre</span>
+      </div>
+      <div class="note">TT assistiu lesionado como "Mister Farioli". Resultados não registados.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-date">4<small>fev '26</small></div>
+        <div>
+          <div class="card-title">Jogos D7 – Pedrouços, Maia</div>
+          <div class="card-subtitle">21h · ~14 jogadores · 3,58€/pessoa</div>
+        </div>
+        <span class="badge badge-torneio">Torneio</span>
+      </div>
+      <div class="chip-row"><span class="chip">2 equipas 7x7</span><span class="chip">Terceira Idade vs Juventude Leonina</span></div>
+      <div class="note">Equipas formadas pelo Hélder. Resultado não partilhado — ver tab "Torneio Fev'26".</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-date">25<small>fev '26</small></div>
+        <div>
+          <div class="card-title">Colégio Júlio Dinis, Porto</div>
+          <div class="card-subtitle">22h · ~13 jogadores · 3,57€/pessoa</div>
+        </div>
+        <span class="badge badge-livre">Livre</span>
+      </div>
+      <div class="note">Resultados não registados no chat.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-date">4<small>mar '26</small></div>
+        <div>
+          <div class="card-title">Jogos D7 – Pedrouços, Maia</div>
+          <div class="card-subtitle">19h · ~16 jogadores · 3,15€/pessoa</div>
+        </div>
+        <span class="badge badge-livre">Livre</span>
+      </div>
+      <div class="note">Sessão com boa adesão. Resultados não registados.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div class="card-date">20<small>mai '26</small></div>
+        <div>
+          <div class="card-title">Colégio Alemão, Porto</div>
+          <div class="card-subtitle">18h30 · ~36 jogadores · Relvado novo</div>
+        </div>
+        <span class="badge badge-torneio">Torneio</span>
+      </div>
+      <div class="chip-row">
+        <span class="chip">5 equipas por turma</span><span class="chip">15 jogos</span><span class="chip">7 min/jogo</span><span class="chip">Torneio Anual</span>
+      </div>
+      <div class="note">O maior torneio do chat — ver tab "Torneio Mai'26" para todos os resultados e classificação.</div>
+    </div>
+  </div>
+
+  <!-- TAB: TORNEIO 1 -->
+  <div id="torneio1" class="tab-content">
+    <div class="section-title">Torneio <span>Maio 2025</span></div>
+    <p class="section-desc">20 maio 2025 · Colégio Alemão, Porto · 18h30 · ~28 jogadores</p>
+
+    <div class="torneio-grid">
+      <div class="info-block"><div class="label">Campo</div><div class="value">Colégio Alemão</div></div>
+      <div class="info-block"><div class="label">Equipas</div><div class="value">021 · 022 · 023 · 024 · 025</div></div>
+      <div class="info-block"><div class="label">Jogadores confirmados</div><div class="value">~28 pessoas</div></div>
+      <div class="info-block"><div class="label">Custo por pessoa</div><div class="value">4,28 €</div></div>
+    </div>
+
+    <div class="note" style="margin-bottom:16px;">⚠️ Os resultados completos deste torneio <strong>nunca foram publicados no chat</strong>. Só existem 3 resultados parciais enviados durante o jogo pelo Pedro, sem identificação das equipas.</div>
+
+    <table class="result-table">
+      <thead>
+        <tr><th>#</th><th>Jogo</th><th>Resultado</th><th>Observação</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><span class="team-tag t021">021</span> vs <span class="team-tag t022">022</span></td>
+          <td class="d">0 – 0</td>
+          <td style="font-size:11px;color:var(--cinza)">Confirmado</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td style="color:var(--cinza);font-style:italic">Equipas não identificadas</td>
+          <td>0 – 1</td>
+          <td style="font-size:11px;color:var(--cinza)">Parcial</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td style="color:var(--cinza);font-style:italic">Equipas não identificadas</td>
+          <td class="w">1 – 0</td>
+          <td style="font-size:11px;color:var(--cinza)">Parcial</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="divider"></div>
+
+    <div class="section-title" style="font-size:20px;margin-bottom:12px;">Participação <span>confirmada</span></div>
+    <div class="team-section">
+      <div class="team-label">Turma 021</div>
+      <div class="players-grid">
+        <span class="player-tag org">Hélder (76)</span>
+        <span class="player-tag org">TT (34)</span>
+        <span class="player-tag">Osório (23) — 019</span>
+        <span class="player-tag" style="color:var(--cinza)">~5 pessoas total</span>
+      </div>
+    </div>
+    <div class="team-section">
+      <div class="team-label">Turma 022</div>
+      <div class="players-grid">
+        <span class="player-tag">Carpinteiro (61)</span>
+        <span class="player-tag">Tua-Lipa (76)</span>
+        <span class="player-tag">Saco (74)</span>
+        <span class="player-tag">Fraco Jogo (37)</span>
+        <span class="player-tag">AHHHHHH (43)</span>
+        <span class="player-tag">Laura (77)</span>
+        <span class="player-tag">Araújo (32)</span>
+        <span class="player-tag" style="color:var(--cinza)">~8 total</span>
+      </div>
+    </div>
+    <div class="team-section">
+      <div class="team-label">Turma 023</div>
+      <div class="players-grid">
+        <span class="player-tag">Mantorras (90)</span>
+        <span class="player-tag">Elliot (69)</span>
+        <span class="player-tag">Cabeçudo (130)</span>
+        <span class="player-tag">Tiago Silva</span>
+        <span class="player-tag" style="color:var(--cinza)">~10 total</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: TORNEIO 2 -->
+  <div id="torneio2" class="tab-content">
+    <div class="section-title">Torneio <span>Fevereiro 2026</span></div>
+    <p class="section-desc">4 fevereiro 2026 · Jogos D7 – Pedrouços, Maia · 21h · ~14 jogadores · 3,58€/pessoa</p>
+
+    <div class="torneio-grid">
+      <div class="info-block"><div class="label">Formato</div><div class="value">2 equipas · 7 × 7</div></div>
+      <div class="info-block"><div class="label">Campo</div><div class="value">D7 Pedrouços</div></div>
+    </div>
+
+    <div class="note" style="margin-bottom:20px;">Único torneio com equipas formadas intencionalmente (não por turma) — o Hélder equilibrou os times às 16h31 do próprio dia. O resultado final não foi partilhado no chat.</div>
+
+    <div class="team-section">
+      <div class="team-label" style="border-color:rgba(192,200,212,0.3);color:#c0c8d4;">⚪ Equipa 1 — "Terceira Idade"</div>
+      <div class="players-grid">
+        <span class="player-tag">Luva de Pedreiro</span>
+        <span class="player-tag">Hélder</span>
+        <span class="player-tag">Krillin</span>
+        <span class="player-tag">Tabau</span>
+        <span class="player-tag">Adam</span>
+        <span class="player-tag">Pinador</span>
+        <span class="player-tag">Mingas</span>
+      </div>
+    </div>
+
+    <div class="team-section">
+      <div class="team-label" style="border-color:rgba(201,162,39,0.4);color:var(--dourado);">🟡 Equipa 2 — "Juventude Leonina"</div>
+      <div class="players-grid">
+        <span class="player-tag">Saco</span>
+        <span class="player-tag">AHHHHHH</span>
+        <span class="player-tag">Tua-Lipa</span>
+        <span class="player-tag">Carpinteiro</span>
+        <span class="player-tag">Fábio Silva</span>
+        <span class="player-tag">Pedro Lourenço</span>
+        <span class="player-tag">Nozes</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: TORNEIO 3 -->
+  <div id="torneio3" class="tab-content">
+    <div class="section-title">Torneio <span>Maio 2026</span></div>
+    <p class="section-desc">20 maio 2026 · Colégio Alemão, Porto · Torneio Anual de Pastranos · Relvado novo</p>
+
+    <div class="torneio-grid">
+      <div class="info-block"><div class="label">Duração por jogo</div><div class="value">7 minutos</div></div>
+      <div class="info-block"><div class="label">Regra especial</div><div class="value">2 golos = fim</div></div>
+      <div class="info-block"><div class="label">Vitória</div><div class="value">3 pontos</div></div>
+      <div class="info-block"><div class="label">Empate</div><div class="value">1 ponto</div></div>
+    </div>
+
+    <!-- Pódio -->
+    <div class="section-title" style="font-size:20px;margin-bottom:4px;margin-top:8px;">Classificação <span>Final</span></div>
+    <div class="podium">
+      <div class="podium-item">
+        <div class="podium-pos">2.º</div>
+        <div class="podium-bar podium-2">022</div>
+        <div class="podium-name">Turma 022</div>
+        <div class="podium-pts">10 pontos</div>
+      </div>
+      <div class="podium-item">
+        <div class="podium-pos">1.º</div>
+        <div class="podium-bar podium-1">024</div>
+        <div class="podium-name">Turma 024</div>
+        <div class="podium-pts">12 pontos</div>
+      </div>
+      <div class="podium-item">
+        <div class="podium-pos">3.º</div>
+        <div class="podium-bar podium-3">021</div>
+        <div class="podium-name">Turma 021</div>
+        <div class="podium-pts">8 pontos</div>
+      </div>
+    </div>
+
+    <table class="result-table" style="margin-bottom:20px;">
+      <thead>
+        <tr><th>#</th><th>Equipa</th><th>J</th><th>V</th><th>E</th><th>D</th><th>GM</th><th>GS</th><th>Pts</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank-1">1</td>
+          <td><span class="team-tag t024">024</span> Turma 024</td>
+          <td>6</td><td class="w">3</td><td>3</td><td>0</td><td>5</td><td>2</td><td class="rank-1">12</td>
+        </tr>
+        <tr>
+          <td class="rank-2">2</td>
+          <td><span class="team-tag t022">022</span> Turma 022</td>
+          <td>6</td><td class="w">3</td><td>1</td><td>2</td><td>6</td><td>4</td><td class="rank-2">10</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><span class="team-tag t021">021</span> Turma 021</td>
+          <td>6</td><td>2</td><td>2</td><td>2</td><td>4</td><td>4</td><td>8</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><span class="team-tag t025">025</span> Turma 025</td>
+          <td>5</td><td>1</td><td>2</td><td>2</td><td>1</td><td>4</td><td>5</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><span class="team-tag t023">023</span> Turma 023</td>
+          <td>4</td><td>0</td><td>1</td><td>3</td><td>0</td><td>4</td><td>1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="divider"></div>
+
+    <div class="section-title" style="font-size:20px;margin-bottom:12px;">Resultados <span>jogo a jogo</span></div>
+
+    <table class="result-table">
+      <thead>
+        <tr><th>#</th><th>Casa</th><th>Resultado</th><th>Fora</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td><span class="team-tag t021">021</span></td><td class="d">0 – 0</td><td><span class="team-tag t022">022</span></td></tr>
+        <tr><td>2</td><td><span class="team-tag t023">023</span></td><td>0 – 1</td><td><span class="team-tag t024">024</span> <span class="w">✓</span></td></tr>
+        <tr><td>3</td><td><span class="team-tag t025">025</span> <span class="w">✓</span></td><td>1 – 0</td><td><span class="team-tag t021">021</span></td></tr>
+        <tr><td>4</td><td><span class="team-tag t022">022</span> <span class="w">✓</span></td><td>2 – 0</td><td><span class="team-tag t023">023</span></td></tr>
+        <tr><td>5</td><td><span class="team-tag t024">024</span> <span class="w">✓</span></td><td>2 – 0</td><td><span class="team-tag t025">025</span></td></tr>
+        <tr style="background:rgba(255,255,255,0.03)"><td colspan="4" style="padding:4px 8px;font-size:10px;color:var(--cinza);letter-spacing:0.1em;text-align:center;">— 2.ª RONDA —</td></tr>
+        <tr><td>6</td><td><span class="team-tag t021">021</span> <span class="w">✓</span></td><td>1 – 0</td><td><span class="team-tag t023">023</span></td></tr>
+        <tr><td>7</td><td><span class="team-tag t022">022</span></td><td>1 – 2</td><td><span class="team-tag t024">024</span> <span class="w">✓</span></td></tr>
+        <tr><td>8</td><td><span class="team-tag t025">025</span></td><td class="d">0 – 0</td><td><span class="team-tag t023">023</span></td></tr>
+        <tr><td>9</td><td><span class="team-tag t021">021</span></td><td class="d">0 – 0</td><td><span class="team-tag t024">024</span></td></tr>
+        <tr><td>10</td><td><span class="team-tag t022">022</span> <span class="w">✓</span></td><td>1 – 0</td><td><span class="team-tag t025">025</span></td></tr>
+        <tr style="background:rgba(255,255,255,0.03)"><td colspan="4" style="padding:4px 8px;font-size:10px;color:var(--cinza);letter-spacing:0.1em;text-align:center;">— 3.ª RONDA —</td></tr>
+        <tr><td>11</td><td><span class="team-tag t021">021</span> <span class="w">✓</span></td><td>2 – 0</td><td><span class="team-tag t024">024</span> <span class="contested">⚠ contestado</span></td></tr>
+        <tr><td>12</td><td><span class="team-tag t022">022</span></td><td class="d">0 – 0</td><td><span class="team-tag t024">024</span></td></tr>
+        <tr><td>13</td><td><span class="team-tag t022">022</span></td><td>0 – 1</td><td><span class="team-tag t021">021</span> <span class="w">✓</span></td></tr>
+        <tr><td>14</td><td><span class="team-tag t025">025</span></td><td class="d">0 – 0</td><td><span class="team-tag t024">024</span></td></tr>
+        <tr><td>15</td><td><span class="team-tag t021">021</span></td><td style="color:var(--cinza);font-style:italic;font-size:12px">sem resultado</td><td><span class="team-tag t025">025</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="note" style="margin-top:14px;">⚠️ Jogo 11 (021 vs 024, 2–0) contestado no chat. Jogo 15 sem resultado registado. A classificação é aproximada — o TT reconheceu possíveis erros na tabela enviada às 1h33 da manhã.</div>
+  </div>
+
+  <!-- TAB: MEMBROS -->
+  <div id="membros" class="tab-content">
+    <div class="section-title">Membros do <span>Grupo</span></div>
+    <p class="section-desc">Jogadores identificados ao longo do chat. Os números entre parênteses são os "números de camisola" (baseados no contacto no grupo).</p>
+
+    <div class="team-section">
+      <div class="team-label" style="border-color:var(--dourado);color:var(--dourado);">Organização</div>
+      <div class="players-grid">
+        <span class="player-tag org">TT (34) — organizador-mor</span>
+        <span class="player-tag org">Hélder (76) — reservas & logística</span>
+        <span class="player-tag org">Pedro — tesoureiro</span>
+      </div>
+    </div>
+
+    <div class="team-section">
+      <div class="team-label">Turma 018</div>
+      <div class="players-grid">
+        <span class="player-tag">Mingas (24)</span>
+        <span class="player-tag">Matreco</span>
+        <span class="player-tag">André (16)</span>
+        <span class="player-tag">Luva de Pedreiro (29)</span>
+      </div>
+    </div>
+
+    <div class="team-section">
+      <div class="team-label">Turma 019</div>
+      <div class="players-grid">
+        <span class="player-tag">Osório (23)</span>
+      </div>
+    </div>
+
+    <div class="team-section">
+      <div class="team-label">Turma 021</div>
+      <div class="players-grid">
+        <span class="player-tag">TT (34)</span>
+        <span class="player-tag">Hélder (76)</span>
+      </div>
+    </div>
+
+    <div class="team-section">
+      <div class="team-label">Turma 022</div>
+      <div class="players-grid">
+        <span class="player-tag">Carpinteiro (61)</span>
+        <span class="player-tag">Tua-Lipa (76)</span>
+        <span class="player-tag">Saco (74)</span>
+        <span class="player-tag">Fraco Jogo (37)</span>
+        <span class="player-tag">AHHHHHH (43)</span>
+        <span class="player-tag">Salvador O Mal Escolhido (04)</span>
+        <span class="player-tag">Laura (77)</span>
+        <span class="player-tag">Araújo (32)</span>
+        <span class="player-tag">Bento (95)</span>
+      </div>
+    </div>
+
+    <div class="team-section">
+      <div class="team-label">Turma 023</div>
+      <div class="players-grid">
+        <span class="player-tag">Mantorras (90)</span>
+        <span class="player-tag">Elliot (69)</span>
+        <span class="player-tag">Cabeçudo (130)</span>
+        <span class="player-tag">Tiago Silva</span>
+      </div>
+    </div>
+
+    <div class="team-section">
+      <div class="team-label">Turma 024</div>
+      <div class="players-grid">
+        <span class="player-tag">Gonçalo Valdoleiros</span>
+        <span class="player-tag">Gonçalo Teixeira</span>
+      </div>
+    </div>
+
+    <div class="team-section">
+      <div class="team-label">Turma 025</div>
+      <div class="players-grid">
+        <span class="player-tag">Tomás Leal</span>
+        <span class="player-tag">Tomás Gonçalves</span>
+        <span class="player-tag">Mikiritaitens (14)</span>
+      </div>
+    </div>
+
+    <div class="team-section">
+      <div class="team-label">Turma não identificada / externos</div>
+      <div class="players-grid">
+        <span class="player-tag">Adam (142)</span>
+        <span class="player-tag">Krillin (150)</span>
+        <span class="player-tag">Testarrossa (112)</span>
+        <span class="player-tag">Gui Melo Swiper (53)</span>
+        <span class="player-tag">Julinho (64)</span>
+        <span class="player-tag">Pinador (187)</span>
+        <span class="player-tag">Mafalda (140)</span>
+        <span class="player-tag">Aurora (02)</span>
+        <span class="player-tag">Marko</span>
+        <span class="player-tag">Tiago Soares</span>
+        <span class="player-tag">Tabau</span>
+        <span class="player-tag">Pedro Teixeira</span>
+      </div>
+    </div>
+
+    <div class="note">O grupo chegou a ter 80+ membros no WhatsApp. Aqui estão apenas os que foram identificados pelo nome ou alcunha ao longo do chat.</div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Peladinhas da Invicta</strong> &nbsp;·&nbsp; Porto · ISEP &nbsp;·&nbsp; Mai 2025 – Mai 2026<br>
+  <span style="margin-top:6px;display:block;">"Só mais 4 crlhs" — TT, sempre</span>
+</footer>
+
+<script>
+  function showTab(id, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    btn.scrollIntoView({ inline: 'nearest', block: 'nearest', behavior: 'smooth' });
+    window.scrollTo({ top: document.querySelector('nav').offsetTop - 2, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
