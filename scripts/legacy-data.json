@@ -1,0 +1,206 @@
+{
+  "members": [
+    { "name": "TT", "jersey_number": 34 },
+    { "name": "Hélder", "jersey_number": 76 },
+    { "name": "Pedro", "jersey_number": null },
+    { "name": "Mingas", "jersey_number": 24 },
+    { "name": "Matreco", "jersey_number": null },
+    { "name": "André", "jersey_number": 16 },
+    { "name": "Luva de Pedreiro", "jersey_number": 29 },
+    { "name": "Osório", "jersey_number": 23 },
+    { "name": "Carpinteiro", "jersey_number": 61 },
+    { "name": "Tua-Lipa", "jersey_number": 76 },
+    { "name": "Saco", "jersey_number": 74 },
+    { "name": "Fraco Jogo", "jersey_number": 37 },
+    { "name": "AHHHHHH", "jersey_number": 43 },
+    { "name": "Salvador O Mal Escolhido", "jersey_number": 4 },
+    { "name": "Laura", "jersey_number": 77 },
+    { "name": "Araújo", "jersey_number": 32 },
+    { "name": "Bento", "jersey_number": 95 },
+    { "name": "Mantorras", "jersey_number": 90 },
+    { "name": "Elliot", "jersey_number": 69 },
+    { "name": "Cabeçudo", "jersey_number": 130 },
+    { "name": "Tiago Silva", "jersey_number": null },
+    { "name": "Gonçalo Valdoleiros", "jersey_number": null },
+    { "name": "Gonçalo Teixeira", "jersey_number": null },
+    { "name": "Tomás Leal", "jersey_number": null },
+    { "name": "Tomás Gonçalves", "jersey_number": null },
+    { "name": "Mikiritaitens", "jersey_number": 14 },
+    { "name": "Adam", "jersey_number": 142 },
+    { "name": "Krillin", "jersey_number": 150 },
+    { "name": "Testarrossa", "jersey_number": 112 },
+    { "name": "Gui Melo Swiper", "jersey_number": 53 },
+    { "name": "Julinho", "jersey_number": 64 },
+    { "name": "Pinador", "jersey_number": 187 },
+    { "name": "Mafalda", "jersey_number": 140 },
+    { "name": "Aurora", "jersey_number": 2 },
+    { "name": "Marko", "jersey_number": null },
+    { "name": "Tiago Soares", "jersey_number": null },
+    { "name": "Tabau", "jersey_number": null },
+    { "name": "Pedro Teixeira", "jersey_number": null },
+    { "name": "Pedro Lourenço", "jersey_number": null },
+    { "name": "Fábio Silva", "jersey_number": null },
+    { "name": "Nozes", "jersey_number": null }
+  ],
+  "sessions": [
+    {
+      "key": "mai25",
+      "date": "2025-05-20",
+      "location": "Colégio Alemão, Porto",
+      "type": "torneio",
+      "label": "Torneio Mai'25",
+      "cost": 119.84,
+      "notes": "Primeiro grande torneio por anos. Organizado pelo Hélder. Resultados parciais."
+    },
+    {
+      "key": "mai25-livre-1",
+      "date": "2025-05-27",
+      "location": "Arena PlaySports VNGaia (Devesas)",
+      "type": "livre",
+      "cost": 89.04,
+      "notes": "Jogo livre sem torneio formal. Resultados não foram registados no chat."
+    },
+    {
+      "key": "jun25-1",
+      "date": "2025-06-03",
+      "location": "Arena PlaySports VNGaia (Devesas)",
+      "type": "livre",
+      "cost": 104.58,
+      "notes": "6 jogadores votaram mas não apareceram — começam as regras contra faltas. Resultados não registados."
+    },
+    {
+      "key": "cancel-summer",
+      "date": "2025-06-15",
+      "location": "Múltiplas tentativas falhadas",
+      "type": "livre",
+      "notes": "[CANCELADO] TT fez várias polls mas nunca atingiu o mínimo. O grupo esteve praticamente inativo de junho a setembro de 2025."
+    },
+    {
+      "key": "set25-1",
+      "date": "2025-09-17",
+      "location": "Indoor Soccer Arca d'Água, Porto",
+      "type": "livre",
+      "cost": 44.98,
+      "notes": "Primeiros visitantes externos — 2 amigos do Mingas. Resultados não registados."
+    },
+    {
+      "key": "set25-2",
+      "date": "2025-09-29",
+      "location": "Indoor Soccer Arca d'Água, Porto",
+      "type": "livre",
+      "notes": "Krillin e Testarrossa desistiram à última hora — TT ficou enervado. Resultados não registados."
+    },
+    {
+      "key": "out25-1",
+      "date": "2025-10-06",
+      "location": "Fut4Us FC Infesta, São Mamede de Infesta",
+      "type": "livre",
+      "cost": 58.5,
+      "notes": "Campo diferente do habitual. Resultados não registados."
+    },
+    {
+      "key": "cancel-fall",
+      "date": "2025-10-15",
+      "location": "Várias semanas sem jogo",
+      "type": "livre",
+      "notes": "[CANCELADO] Campo grátis pelo Tua-Lipa cancelado à última hora em novembro."
+    },
+    {
+      "key": "jan26",
+      "date": "2026-01-19",
+      "location": "Arena PlaySports Porto (Prelada)",
+      "type": "livre",
+      "cost": 71.4,
+      "notes": "⚠️ TT sofreu uma rotura de ligamentos neste jogo."
+    },
+    {
+      "key": "jan26-2",
+      "date": "2026-01-28",
+      "location": "Jogos D7 – Pedrouços, Maia",
+      "type": "livre",
+      "cost": 46.62,
+      "notes": "TT assistiu lesionado como Mister Farioli. Resultados não registados."
+    },
+    {
+      "key": "fev26",
+      "date": "2026-02-04",
+      "location": "Jogos D7 – Pedrouços, Maia",
+      "type": "torneio",
+      "label": "Torneio Fev'26",
+      "cost": 50.12,
+      "notes": "Equipas formadas pelo Hélder. Resultado final não partilhado no chat."
+    },
+    {
+      "key": "fev26-livre",
+      "date": "2026-02-25",
+      "location": "Colégio Júlio Dinis, Porto",
+      "type": "livre",
+      "cost": 46.41,
+      "notes": "Resultados não registados no chat."
+    },
+    {
+      "key": "mar26",
+      "date": "2026-03-04",
+      "location": "Jogos D7 – Pedrouços, Maia",
+      "type": "livre",
+      "cost": 50.4,
+      "notes": "Sessão com boa adesão. Resultados não registados."
+    },
+    {
+      "key": "mai26",
+      "date": "2026-05-20",
+      "location": "Colégio Alemão, Porto",
+      "type": "torneio",
+      "label": "Torneio Mai'26",
+      "cost": 154.08,
+      "notes": "O maior torneio do chat — Torneio Anual de Pastranos · Relvado novo"
+    }
+  ],
+  "tournaments": {
+    "mai25": {
+      "teams": ["021", "022", "023"],
+      "games": [
+        { "order": 1, "team_a": "021", "team_b": "022", "goals_a": 0, "goals_b": 0, "notes": "Confirmado" }
+      ]
+    },
+    "fev26": {
+      "teams": ["Terceira Idade", "Juventude Leonina"],
+      "attendance": [
+        { "member": "Luva de Pedreiro", "team": "Terceira Idade" },
+        { "member": "Hélder", "team": "Terceira Idade" },
+        { "member": "Krillin", "team": "Terceira Idade" },
+        { "member": "Tabau", "team": "Terceira Idade" },
+        { "member": "Adam", "team": "Terceira Idade" },
+        { "member": "Pinador", "team": "Terceira Idade" },
+        { "member": "Mingas", "team": "Terceira Idade" },
+        { "member": "Saco", "team": "Juventude Leonina" },
+        { "member": "AHHHHHH", "team": "Juventude Leonina" },
+        { "member": "Tua-Lipa", "team": "Juventude Leonina" },
+        { "member": "Carpinteiro", "team": "Juventude Leonina" },
+        { "member": "Fábio Silva", "team": "Juventude Leonina" },
+        { "member": "Pedro Lourenço", "team": "Juventude Leonina" },
+        { "member": "Nozes", "team": "Juventude Leonina" }
+      ],
+      "games": []
+    },
+    "mai26": {
+      "teams": ["021", "022", "023", "024", "025"],
+      "games": [
+        { "order": 1, "team_a": "021", "team_b": "022", "goals_a": 0, "goals_b": 0 },
+        { "order": 2, "team_a": "023", "team_b": "024", "goals_a": 0, "goals_b": 1 },
+        { "order": 3, "team_a": "025", "team_b": "021", "goals_a": 1, "goals_b": 0 },
+        { "order": 4, "team_a": "022", "team_b": "023", "goals_a": 2, "goals_b": 0 },
+        { "order": 5, "team_a": "024", "team_b": "025", "goals_a": 2, "goals_b": 0 },
+        { "order": 6, "team_a": "021", "team_b": "023", "goals_a": 1, "goals_b": 0 },
+        { "order": 7, "team_a": "022", "team_b": "024", "goals_a": 1, "goals_b": 2 },
+        { "order": 8, "team_a": "025", "team_b": "023", "goals_a": 0, "goals_b": 0 },
+        { "order": 9, "team_a": "021", "team_b": "024", "goals_a": 0, "goals_b": 0 },
+        { "order": 10, "team_a": "022", "team_b": "025", "goals_a": 1, "goals_b": 0 },
+        { "order": 11, "team_a": "021", "team_b": "024", "goals_a": 2, "goals_b": 0, "notes": "contestado" },
+        { "order": 12, "team_a": "022", "team_b": "024", "goals_a": 0, "goals_b": 0 },
+        { "order": 13, "team_a": "022", "team_b": "021", "goals_a": 0, "goals_b": 1 },
+        { "order": 14, "team_a": "025", "team_b": "024", "goals_a": 0, "goals_b": 0 }
+      ]
+    }
+  }
+}

@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #0d1b3e;
+  --navy-light: #112050;
+  --navy-lighter: #1a2f6a;
+  --gold: #f5c842;
+  --gold-light: #fad96a;
+  --gold-dark: #d4a520;
+  --text-primary: #ffffff;
+  --text-secondary: #b8c5d6;
+  --text-muted: #8fa3bc;
+  --border-subtle: rgba(255, 255, 255, 0.12);
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-hover: rgba(255, 255, 255, 0.09);
+  --nav-height: 3.75rem;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --session-title-lg: clamp(1.375rem, 4vw + 0.5rem, 2.25rem);
+  --session-title-md: clamp(1.0625rem, 2.5vw + 0.5rem, 1.125rem);
+  --session-title-sm: clamp(0.9375rem, 2vw + 0.25rem, 1rem);
+}
+
+@theme inline {
+  --color-navy: var(--navy);
+  --color-navy-light: var(--navy-light);
+  --color-navy-lighter: var(--navy-lighter);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-surface: var(--surface);
+  --font-display: var(--font-bebas);
+  --font-condensed: var(--font-barlow-condensed);
+  --font-sans: var(--font-barlow);
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--navy);
+  color: var(--text-primary);
+  font-family: var(--font-barlow), system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 50% -10%,
+      rgba(26, 47, 106, 0.5) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 100% 100%,
+      rgba(245, 200, 66, 0.08) 0%,
+      transparent 60%
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(255, 255, 255, 0.012) 40px,
+      rgba(255, 255, 255, 0.012) 41px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* Room for fixed bottom nav on mobile */
+.has-bottom-nav {
+  padding-bottom: calc(var(--nav-height) + var(--safe-bottom) + 1rem);
+}
+
+@media (min-width: 768px) {
+  .has-bottom-nav {
+    padding-bottom: 0;
+  }
+}
+
+/* Readable form controls on mobile */
+.touch-target {
+  min-height: 3rem;
+  font-size: 1rem;
+}
+
+.touch-target-lg {
+  min-height: 3.25rem;
+  font-size: 1.0625rem;
+}
+
+/* Títulos de sessão — tipografia fluida + máx. 2 linhas */
+.session-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  line-height: 1.25;
+}
+
+.session-title-lg {
+  font-family: var(--font-bebas), system-ui, sans-serif;
+  font-size: var(--session-title-lg);
+  letter-spacing: 0.02em;
+}
+
+.session-title-md {
+  font-size: var(--session-title-md);
+  font-weight: 600;
+}
+
+.session-title-sm {
+  font-size: var(--session-title-sm);
+  font-weight: 600;
+}
